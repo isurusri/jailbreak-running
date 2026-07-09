@@ -1,0 +1,83 @@
+[gd_scene format=3 uid="uid://cnd0uitk6sjp"]
+
+[ext_resource type="Script" uid="uid://xlo10f6vbcy6" path="res://scripts/levels/test_level.gd" id="1_fr1um"]
+[ext_resource type="Texture2D" uid="uid://0xch3t25xjoa" path="res://assets/sprites/dawnlike/floor_brick_gray.png" id="2_48ne7"]
+[ext_resource type="Script" uid="uid://c6vu7385je7gb" path="res://scripts/components/input_handler.gd" id="2_v45ci"]
+[ext_resource type="Texture2D" uid="uid://bgsybu3fa2vbd" path="res://assets/sprites/dawnlike/wall_panel.png" id="3_6xh4u"]
+[ext_resource type="PackedScene" path="res://scenes/actors/player.tscn" id="3_48ne7"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_walk"]
+vertices = PackedVector2Array(64, 64, 1088, 64, 1088, 584, 64, 584)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(64, 64, 1088, 64, 1088, 584, 64, 584)])
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pillar"]
+size = Vector2(120, 120)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_table"]
+size = Vector2(200, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_crate"]
+size = Vector2(90, 90)
+
+[node name="TestLevel" type="Node2D" unique_id=497984604]
+script = ExtResource("1_fr1um")
+
+[node name="Floor" type="Sprite2D" parent="." unique_id=46774182]
+texture_repeat = 2
+position = Vector2(32, 32)
+scale = Vector2(2, 2)
+texture = ExtResource("2_48ne7")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 544, 292)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=1645726289]
+navigation_polygon = SubResource("NavigationPolygon_walk")
+
+[node name="Obstacles" type="Node2D" parent="NavigationRegion2D" unique_id=1379540286]
+
+[node name="Pillar1" type="StaticBody2D" parent="NavigationRegion2D/Obstacles" unique_id=1852854617]
+position = Vector2(400, 250)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NavigationRegion2D/Obstacles/Pillar1" unique_id=2006114758]
+shape = SubResource("RectangleShape2D_pillar")
+
+[node name="Visual" type="Sprite2D" parent="NavigationRegion2D/Obstacles/Pillar1" unique_id=1138026650]
+texture_repeat = 2
+scale = Vector2(2, 2)
+texture = ExtResource("3_6xh4u")
+region_enabled = true
+region_rect = Rect2(0, 0, 60, 60)
+
+[node name="Table1" type="StaticBody2D" parent="NavigationRegion2D/Obstacles" unique_id=1214087724]
+position = Vector2(760, 420)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NavigationRegion2D/Obstacles/Table1" unique_id=1930623164]
+shape = SubResource("RectangleShape2D_table")
+
+[node name="Visual" type="Sprite2D" parent="NavigationRegion2D/Obstacles/Table1" unique_id=136257664]
+texture_repeat = 2
+scale = Vector2(2, 2)
+texture = ExtResource("3_6xh4u")
+region_enabled = true
+region_rect = Rect2(0, 0, 100, 40)
+
+[node name="Crate1" type="StaticBody2D" parent="NavigationRegion2D/Obstacles" unique_id=1717656648]
+position = Vector2(650, 150)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NavigationRegion2D/Obstacles/Crate1" unique_id=1247175780]
+shape = SubResource("RectangleShape2D_crate")
+
+[node name="Visual" type="Sprite2D" parent="NavigationRegion2D/Obstacles/Crate1" unique_id=263707777]
+texture_repeat = 2
+scale = Vector2(2, 2)
+texture = ExtResource("3_6xh4u")
+region_enabled = true
+region_rect = Rect2(0, 0, 45, 45)
+
+[node name="InputHandler" type="Node2D" parent="." unique_id=613128416]
+script = ExtResource("2_v45ci")
+
+[node name="Player" parent="." unique_id=1538898542 instance=ExtResource("3_48ne7")]
+position = Vector2(180, 320)

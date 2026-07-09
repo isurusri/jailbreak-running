@@ -1,0 +1,14 @@
+Placeholder art cropped from "DawnLike — 16x16 Universal Rogue-like tileset v1.81"
+by DragonDePlatino, using the DawnBringer palette by DawnBringer.
+License: CC-BY 4.0 (https://creativecommons.org/licenses/by/4.0/)
+Source: https://opengameart.org/content/dawnlike-16x16-universal-rogue-like-tileset-v181
+
+Crops used (sheet -> tile offset x,y):
+- slick_0.png / slick_1.png  <- Characters/Player0.png / Player1.png @ (112,16)  (striped prisoner, 2-frame anim)
+- floor_brick_gray.png       <- Objects/Floor.png @ (16,112)
+- wall_panel.png             <- Objects/Wall.png @ (16,528)
+
+NOTE from the DawnLike README: if this art ships in a release, DawnBringer must be
+credited, and the Platino sprite (in Characters/Reptile*.png) must be hidden
+somewhere as an easter egg. These are temporary placeholders — replace with final
+art before release, or honor the above.

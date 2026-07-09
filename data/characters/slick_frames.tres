@@ -1,0 +1,34 @@
+[gd_resource type="SpriteFrames" load_steps=3 format=3]
+
+[ext_resource type="Texture2D" path="res://assets/sprites/dawnlike/slick_0.png" id="1_s0"]
+[ext_resource type="Texture2D" path="res://assets/sprites/dawnlike/slick_1.png" id="2_s1"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_s1")
+}],
+"loop": true,
+"name": &"caught",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_s0")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_s0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_s1")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 8.0
+}]

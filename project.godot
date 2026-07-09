@@ -1,0 +1,44 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="jailbreak"
+run/main_scene="uid://cnd0uitk6sjp"
+config/features=PackedStringArray("4.7", "GL Compatibility")
+config/icon="res://icon.svg"
+
+[autoload]
+
+_mcp_game_helper="*res://addons/godot_ai/runtime/game_helper.gd"
+EventBus="*res://autoloads/event_bus.gd"
+GameManager="*res://autoloads/game_manager.gd"
+SaveManager="*res://autoloads/save_manager.gd"
+Registry="*res://autoloads/registry.gd"
+
+[display]
+
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/godot_ai/plugin.cfg")
+
+[physics]
+
+3d/physics_engine="Jolt Physics"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
+rendering_device/driver.windows="d3d12"
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"

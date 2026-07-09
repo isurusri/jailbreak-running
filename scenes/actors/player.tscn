@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/actors/player.gd" id="1_player"]
+[ext_resource type="Script" path="res://scripts/components/movement.gd" id="2_movement"]
+[ext_resource type="Resource" path="res://data/characters/slick.tres" id="3_slick"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_body"]
+radius = 14.0
+
+[node name="Player" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_player")
+data = ExtResource("3_slick")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_body")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -8)
+scale = Vector2(2, 2)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 4.0
+target_desired_distance = 4.0
+radius = 14.0
+
+[node name="Movement" type="Node" parent="." node_paths=PackedStringArray("body", "agent")]
+script = ExtResource("2_movement")
+body = NodePath("..")
+agent = NodePath("../NavigationAgent2D")
+data = ExtResource("3_slick")
