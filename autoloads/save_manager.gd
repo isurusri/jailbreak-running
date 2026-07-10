@@ -15,6 +15,9 @@ var profile := {
 	"settings": {"sfx": 1.0, "music": 1.0},
 }
 
+func _ready() -> void:
+	load_profile()
+
 func save() -> void:
 	var f := FileAccess.open(SAVE_PATH, FileAccess.WRITE)
 	f.store_string(JSON.stringify(profile, "\t"))
@@ -25,6 +28,13 @@ func load_profile() -> void:
 	var parsed = JSON.parse_string(FileAccess.get_file_as_string(SAVE_PATH))
 	if parsed is Dictionary:
 		profile = _migrate(parsed)
+
+func bank_loot(amount: int, ids: Array[StringName]) -> void:
+	profile.banked_loot += amount
+	for id in ids:
+		if not profile.collected_ids.has(String(id)):
+			profile.collected_ids.append(String(id))
+	save()
 
 func _migrate(data: Dictionary) -> Dictionary:
 	var v: int = data.get("version", 0)

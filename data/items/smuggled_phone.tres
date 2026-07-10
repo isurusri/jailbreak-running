@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://resources/item_data.gd" id="1_schema"]
+[ext_resource type="Texture2D" path="res://assets/sprites/dawnlike/item_smuggled_phone.png" id="2_icon"]
+
+[resource]
+script = ExtResource("1_schema")
+id = &"smuggled_phone"
+display_name = "Smuggled Phone"
+icon = ExtResource("2_icon")
+value = 40
+rarity = 2
+flavor_text = "Still has one bar of battery and seventeen missed calls from 'DO NOT ANSWER'."

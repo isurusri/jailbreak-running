@@ -10,3 +10,4 @@ func _ready() -> void:
 	poly.agent_radius = 14.0   # matches the player's collision radius
 	poly.parsed_geometry_type = NavigationPolygon.PARSED_GEOMETRY_STATIC_COLLIDERS
 	nav_region.bake_navigation_polygon()
+	GameManager.start_run()

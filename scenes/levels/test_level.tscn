@@ -8,6 +8,11 @@
 [ext_resource type="PackedScene" path="res://scenes/actors/guard.tscn" id="6_cyt5c"]
 [ext_resource type="PackedScene" path="res://scenes/actors/pickup.tscn" id="7_7x1jh"]
 [ext_resource type="Script" path="res://scripts/components/cover_zone.gd" id="8_cover"]
+[ext_resource type="PackedScene" path="res://scenes/ui/hud.tscn" id="9_hud"]
+[ext_resource type="Script" path="res://scripts/components/exit_door.gd" id="10_exit"]
+[ext_resource type="Texture2D" path="res://assets/sprites/dawnlike/door_exit.png" id="11_door"]
+[ext_resource type="Resource" path="res://data/items/cigarettes.tres" id="12_cigs"]
+[ext_resource type="Resource" path="res://data/items/smuggled_phone.tres" id="13_phone"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_walk"]
 vertices = PackedVector2Array(64, 64, 1088, 64, 1088, 584, 64, 584)
@@ -37,6 +42,9 @@ size = Vector2(60, 120)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cover_table"]
 size = Vector2(60, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_exit"]
+size = Vector2(32, 36)
 
 [node name="TestLevel" type="Node2D" unique_id=497984604]
 script = ExtResource("1_fr1um")
@@ -123,6 +131,28 @@ waypoints = NodePath("../GuardPath")
 
 [node name="Pickup" parent="." unique_id=525658289 instance=ExtResource("7_7x1jh")]
 position = Vector2(560, 300)
+
+[node name="PickupCigs" parent="." instance=ExtResource("7_7x1jh")]
+position = Vector2(450, 480)
+item = ExtResource("12_cigs")
+
+[node name="PickupPhone" parent="." instance=ExtResource("7_7x1jh")]
+position = Vector2(980, 470)
+item = ExtResource("13_phone")
+
+[node name="ExitDoor" type="Area2D" parent="."]
+position = Vector2(1060, 320)
+script = ExtResource("10_exit")
+interact_radius = 36.0
+
+[node name="Sprite2D" type="Sprite2D" parent="ExitDoor"]
+scale = Vector2(2, 2)
+texture = ExtResource("11_door")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitDoor"]
+shape = SubResource("RectangleShape2D_exit")
+
+[node name="HUD" parent="." instance=ExtResource("9_hud")]
 
 [node name="Blackout" type="CanvasModulate" parent="."]
 color = Color(0.3, 0.16, 0.16, 1)

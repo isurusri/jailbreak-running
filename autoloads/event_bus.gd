@@ -17,5 +17,6 @@ signal contraband_collected(item: ItemData)
 # Run flow
 signal lockdown_tick(seconds_left: float)
 signal lockdown_sealed
+signal escape_reached           # player interacted with a level exit
 signal level_completed(config: LevelConfig)
 signal run_failed          # caught or sealed in → loot confiscated
