@@ -4,6 +4,8 @@ extends CharacterBody2D
 enum State { IDLE, WALKING, INTERACTING, CAUGHT }
 var state: State = State.IDLE
 
+const COVER_DIM_ALPHA := 0.55   # telegraph "hidden" while in a shadow pocket
+
 @export var data: CharacterData
 @onready var movement: MovementComponent = $Movement
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
@@ -15,6 +17,8 @@ func _ready() -> void:
 	EventBus.move_requested.connect(_on_move_requested)
 	EventBus.interact_requested.connect(_on_interact_requested)
 	EventBus.player_caught.connect(func(): _enter_state(State.CAUGHT))
+	EventBus.player_entered_cover.connect(func(): sprite.modulate.a = COVER_DIM_ALPHA)
+	EventBus.player_left_cover.connect(func(): sprite.modulate.a = 1.0)
 	movement.destination_reached.connect(_on_destination_reached)
 	movement.moving.connect(_update_facing)
 	sprite.play(&"idle")

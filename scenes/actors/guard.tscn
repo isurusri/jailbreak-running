@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3]
+[gd_scene load_steps=7 format=3]
 
 [ext_resource type="Script" path="res://scripts/actors/guard.gd" id="1_guard"]
 [ext_resource type="Script" path="res://scripts/components/movement.gd" id="2_movement"]
 [ext_resource type="Script" path="res://scripts/components/vision_cone.gd" id="3_cone"]
 [ext_resource type="Resource" path="res://data/characters/guard_grunt.tres" id="4_data"]
+[ext_resource type="Texture2D" path="res://assets/lights/flashlight_cone.svg" id="5_beam"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_body"]
 radius = 14.0
@@ -38,3 +39,12 @@ enabled = false
 script = ExtResource("3_cone")
 data = ExtResource("4_data")
 ray = NodePath("../Ray")
+
+[node name="Flashlight" type="PointLight2D" parent="VisionCone"]
+color = Color(1, 0.95, 0.8, 1)
+energy = 1.4
+shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 2.0
+texture = ExtResource("5_beam")
+texture_scale = 0.9
