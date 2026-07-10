@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="LevelConfig" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://resources/level_config.gd" id="1_schema"]
+[ext_resource type="Resource" path="res://data/levels/level_02_cell_block_b.tres" id="2_next"]
+
+[resource]
+script = ExtResource("1_schema")
+id = &"level_01_deep_blocks"
+display_name = "Deep Blocks"
+scene_path = "res://scenes/levels/test_level.tscn"
+lockdown_seconds = 180.0
+par_loot_value = 50
+next_level = ExtResource("2_next")

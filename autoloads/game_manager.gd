@@ -1,12 +1,12 @@
 extends Node
 ## Run state machine (PLAYING / CAUGHT / ESCAPED), lockdown timer, carried loot,
 ## level chaining via LevelConfig.next_level.
-## Must NOT touch UI nodes or actor internals.
+## Must NOT touch UI nodes, actor internals, or the scene tree — it emits
+## facts on EventBus; Main owns level swaps.
 
 enum RunState { PLAYING, CAUGHT, ESCAPED }
 
-const RESTART_DELAY := 1.5              # let the caught/escaped moment land
-const FALLBACK_LOCKDOWN_SECONDS := 180.0   # until LevelConfig chain (Milestone 6)
+const FALLBACK_LOCKDOWN_SECONDS := 180.0   # when a level runs without a config
 
 var run_state: RunState = RunState.PLAYING
 var carried_loot: int = 0
@@ -55,17 +55,16 @@ func _on_escape_reached() -> void:
 		return
 	run_state = RunState.ESCAPED
 	set_process(false)
+	if current_level:
+		var run_seconds := current_level.lockdown_seconds - seconds_left
+		SaveManager.record_best_time(String(current_level.id), run_seconds)
+		if current_level.next_level:
+			SaveManager.set_unlocked_level(String(current_level.next_level.id))
 	SaveManager.bank_loot(carried_loot, carried_ids)
 	EventBus.level_completed.emit(current_level)
-	_restart_soon()
 
 func _fail_run() -> void:
 	set_process(false)
 	carried_loot = 0   # confiscation: the story's caught mechanic
 	carried_ids.clear()
 	EventBus.run_failed.emit()
-	_restart_soon()
-
-func _restart_soon() -> void:
-	await get_tree().create_timer(RESTART_DELAY).timeout
-	get_tree().reload_current_scene()

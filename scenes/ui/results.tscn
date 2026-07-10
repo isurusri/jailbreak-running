@@ -1,0 +1,68 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/results.gd" id="1_results"]
+[ext_resource type="FontFile" path="res://assets/fonts/sds_8x8.ttf" id="2_font"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_title"]
+font = ExtResource("2_font")
+font_size = 32
+font_color = Color(1, 0.85, 0.4, 1)
+shadow_color = Color(0, 0, 0, 0.8)
+shadow_offset = Vector2(3, 3)
+
+[sub_resource type="LabelSettings" id="LabelSettings_body"]
+font = ExtResource("2_font")
+font_size = 16
+shadow_color = Color(0, 0, 0, 0.6)
+shadow_offset = Vector2(2, 2)
+
+[node name="Results" type="CanvasLayer"]
+layer = 10
+process_mode = 3
+script = ExtResource("1_results")
+
+[node name="Dim" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0.7)
+
+[node name="Center" type="CenterContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBox" type="VBoxContainer" parent="Center"]
+theme_override_constants/separation = 14
+
+[node name="TitleLabel" type="Label" parent="Center/VBox"]
+unique_name_in_owner = true
+horizontal_alignment = 1
+label_settings = SubResource("LabelSettings_title")
+text = "ESCAPED"
+
+[node name="HaulLabel" type="Label" parent="Center/VBox"]
+unique_name_in_owner = true
+horizontal_alignment = 1
+label_settings = SubResource("LabelSettings_body")
+
+[node name="ParLabel" type="Label" parent="Center/VBox"]
+unique_name_in_owner = true
+horizontal_alignment = 1
+label_settings = SubResource("LabelSettings_body")
+
+[node name="BankedLabel" type="Label" parent="Center/VBox"]
+unique_name_in_owner = true
+horizontal_alignment = 1
+label_settings = SubResource("LabelSettings_body")
+
+[node name="TimeLabel" type="Label" parent="Center/VBox"]
+unique_name_in_owner = true
+horizontal_alignment = 1
+label_settings = SubResource("LabelSettings_body")
+
+[node name="ContinueButton" type="Button" parent="Center/VBox"]
+unique_name_in_owner = true
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 16
+text = "CONTINUE"

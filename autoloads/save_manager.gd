@@ -36,6 +36,16 @@ func bank_loot(amount: int, ids: Array[StringName]) -> void:
 			profile.collected_ids.append(String(id))
 	save()
 
+func record_best_time(level_id: String, seconds: float) -> void:
+	var best: float = profile.best_times.get(level_id, 0.0)
+	if best <= 0.0 or seconds < best:
+		profile.best_times[level_id] = seconds
+		save()
+
+func set_unlocked_level(level_id: String) -> void:
+	profile.unlocked_level = level_id
+	save()
+
 func _migrate(data: Dictionary) -> Dictionary:
 	var v: int = data.get("version", 0)
 	while v < CURRENT_VERSION:

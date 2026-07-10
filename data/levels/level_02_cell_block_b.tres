@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="LevelConfig" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resources/level_config.gd" id="1_schema"]
+
+[resource]
+script = ExtResource("1_schema")
+id = &"level_02_cell_block_b"
+display_name = "Cell Block B"
+scene_path = "res://scenes/levels/test_level.tscn"
+lockdown_seconds = 120.0
+par_loot_value = 60
