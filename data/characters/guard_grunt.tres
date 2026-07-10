@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CharacterData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://resources/character_data.gd" id="1_schema"]
+[ext_resource type="SpriteFrames" path="res://data/characters/guard_frames.tres" id="2_frames"]
+
+[resource]
+script = ExtResource("1_schema")
+display_name = "Guard"
+sprite_frames = ExtResource("2_frames")
+move_speed = 140.0
+vision_range = 220.0
+vision_angle_deg = 50.0
+patrol_wait_time = 1.5
+suspicion_seconds = 0.4

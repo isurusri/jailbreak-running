@@ -5,6 +5,8 @@
 [ext_resource type="Script" uid="uid://c6vu7385je7gb" path="res://scripts/components/input_handler.gd" id="2_v45ci"]
 [ext_resource type="Texture2D" uid="uid://bgsybu3fa2vbd" path="res://assets/sprites/dawnlike/wall_panel.png" id="3_6xh4u"]
 [ext_resource type="PackedScene" path="res://scenes/actors/player.tscn" id="3_48ne7"]
+[ext_resource type="PackedScene" path="res://scenes/actors/guard.tscn" id="6_cyt5c"]
+[ext_resource type="PackedScene" path="res://scenes/actors/pickup.tscn" id="7_7x1jh"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_walk"]
 vertices = PackedVector2Array(64, 64, 1088, 64, 1088, 584, 64, 584)
@@ -81,3 +83,18 @@ script = ExtResource("2_v45ci")
 
 [node name="Player" parent="." unique_id=1538898542 instance=ExtResource("3_48ne7")]
 position = Vector2(180, 320)
+
+[node name="GuardPath" type="Node2D" parent="." unique_id=1386427363]
+
+[node name="WP1" type="Marker2D" parent="GuardPath" unique_id=1956099098]
+position = Vector2(950, 140)
+
+[node name="WP2" type="Marker2D" parent="GuardPath" unique_id=932445439]
+position = Vector2(620, 480)
+
+[node name="Guard" parent="." unique_id=1072700660 node_paths=PackedStringArray("waypoints") instance=ExtResource("6_cyt5c")]
+position = Vector2(950, 140)
+waypoints = NodePath("../GuardPath")
+
+[node name="Pickup" parent="." unique_id=525658289 instance=ExtResource("7_7x1jh")]
+position = Vector2(560, 300)

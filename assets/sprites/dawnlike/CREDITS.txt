@@ -5,6 +5,8 @@ Source: https://opengameart.org/content/dawnlike-16x16-universal-rogue-like-tile
 
 Crops used (sheet -> tile offset x,y):
 - slick_0.png / slick_1.png  <- Characters/Player0.png / Player1.png @ (112,16)  (striped prisoner, 2-frame anim)
+- guard_0.png / guard_1.png  <- Characters/Player0.png / Player1.png @ (48,48)   (blue-uniformed officer, 2-frame anim)
+- item_gold_watch.png        <- Items/Money.png @ (32,48)
 - floor_brick_gray.png       <- Objects/Floor.png @ (16,112)
 - wall_panel.png             <- Objects/Wall.png @ (16,528)
 

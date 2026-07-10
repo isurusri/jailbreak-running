@@ -1,16 +1,17 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene load_steps=6 format=3]
 
-[ext_resource type="Script" path="res://scripts/actors/player.gd" id="1_player"]
+[ext_resource type="Script" path="res://scripts/actors/guard.gd" id="1_guard"]
 [ext_resource type="Script" path="res://scripts/components/movement.gd" id="2_movement"]
-[ext_resource type="Resource" path="res://data/characters/slick.tres" id="3_slick"]
+[ext_resource type="Script" path="res://scripts/components/vision_cone.gd" id="3_cone"]
+[ext_resource type="Resource" path="res://data/characters/guard_grunt.tres" id="4_data"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_body"]
 radius = 14.0
 
-[node name="Player" type="CharacterBody2D" groups=["player"]]
+[node name="Guard" type="CharacterBody2D"]
 motion_mode = 1
-script = ExtResource("1_player")
-data = ExtResource("3_slick")
+script = ExtResource("1_guard")
+data = ExtResource("4_data")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_body")
@@ -28,4 +29,12 @@ radius = 14.0
 script = ExtResource("2_movement")
 body = NodePath("..")
 agent = NodePath("../NavigationAgent2D")
-data = ExtResource("3_slick")
+data = ExtResource("4_data")
+
+[node name="Ray" type="RayCast2D" parent="."]
+enabled = false
+
+[node name="VisionCone" type="Area2D" parent="." node_paths=PackedStringArray("ray")]
+script = ExtResource("3_cone")
+data = ExtResource("4_data")
+ray = NodePath("../Ray")

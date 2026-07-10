@@ -1,0 +1,26 @@
+[gd_resource type="SpriteFrames" load_steps=3 format=3]
+
+[ext_resource type="Texture2D" path="res://assets/sprites/dawnlike/guard_0.png" id="1_g0"]
+[ext_resource type="Texture2D" path="res://assets/sprites/dawnlike/guard_1.png" id="2_g1"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_g0")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_g0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_g1")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 8.0
+}]
